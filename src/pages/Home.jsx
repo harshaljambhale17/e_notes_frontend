@@ -58,8 +58,8 @@ const Home = () => {
         <div className="container px-5 py-24 mx-auto">
           <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Testimonials</h1>
           <div className="flex flex-wrap -m-4">
-            {[{ name: "HARSH KAKAD", role: "UI DEVELOPER", text: "Working with Harsh Kakad was a fantastic experience! They brought my vision to life with stunning designs that perfectly aligned with my brand. Highly recommend!" },
-              { name: "ROHIT KATORE", role: "DEVELOPER", text: "Absolutely thrilled with the designs! They perfectly captured my vision and brought it to life." }].map((testimonial, index) => (
+            {[{ name: "HARSHAL JAMBHALE", role: "UI DEVELOPER", text: "Working with Harsh Kakad was a fantastic experience! They brought my vision to life with stunning designs that perfectly aligned with my brand. Highly recommend!" },
+              { name: "HARSHAL JAMBHALE", role: "DEVELOPER", text: "Absolutely thrilled with the designs! They perfectly captured my vision and brought it to life." }].map((testimonial, index) => (
               <div key={index} className="p-4 md:w-1/2 w-full">
                 <div className="h-full bg-gray-100 p-8 rounded">
                   <p className="leading-relaxed mb-6">{testimonial.text}</p>

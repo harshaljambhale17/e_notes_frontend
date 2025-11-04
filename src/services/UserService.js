@@ -126,6 +126,7 @@ export const updateNotes = async (id, formData) => {
 
     const data = new FormData();
 
+    // data.append("id", id);
     data.append("title", formData.title);
     data.append("description", formData.description);
     data.append("userEmail", formData.userEmail);
@@ -134,7 +135,7 @@ export const updateNotes = async (id, formData) => {
         data.append("file", formData.file);
     }
 
-    const response = await httpClient.put(`/api/user/file/updateNotes/${id}`,data,{
+    const response = await httpClient.post(`/api/user/file/updateNotes/${id}`,data,{
         headers: {
             "Content-Type": "multipart/form-data",
             "Authorization": `Bearer ${token}`,
@@ -144,14 +145,19 @@ export const updateNotes = async (id, formData) => {
     return response.data;
 }
 
-export const deleteNote = (id) => {
+export const deleteNote = async (id) => {
     const token = localStorage.getItem("token")
     console.log("2")
-    const response = httpClient.get(`/api/user/deleteNotes/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log("3")
-    return response;
+    try {
+        const response = await httpClient.get(`/api/user/deleteNotes/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        console.log("3")
+        return response;
+    } catch (error) {
+        console.error("Delete note error:", error);
+        throw error;
+    }
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaEye, FaDownload } from "react-icons/fa";
 import { getAllUserNotes } from '../services/UserService';
 import toast from 'react-hot-toast';
 import { deleteNote } from '../services/UserService';
@@ -8,7 +8,7 @@ const ViewNotes = () => {
 
   const [notes, setNotes] = useState([])
 
-  const deleteNotes = useCallback(async (id) => {
+  const deleteNotes = useCallback( async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this note?");
     if (!confirmDelete) return;
   
@@ -27,6 +27,19 @@ const ViewNotes = () => {
     }
   }, []);
 
+  const handleDownload = async (fileUrl, fileName) => {
+  try {
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName || 'downloaded_file';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    } catch (error) {
+      console.error("Download failed:", error);
+    }
+  };
   
   useEffect(() => {
     const fetchNotes = async () => {
@@ -63,14 +76,6 @@ const ViewNotes = () => {
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">{note.title}</h2>
                 <p className="text-gray-600 mb-4">{note.description}</p>
 
-                {note.fileName && (
-                  <img
-                    src={`C:/Users/Harshal PC/Desktop/.vscode/Spring Boot/Project/Major-Project/E-Notes/ENotes-Data/${note.user.email}/${note.fileName}`}
-                    alt="Note Attachment"
-                    className="w-32 h-32 object-cover rounded-lg shadow-sm border border-gray-200 mb-4"
-                  />
-                )}
-
                 <p className="text-sm text-gray-500 mb-4">
                   Public Date: <span className="font-medium text-gray-700">{note.date}</span>
                 </p>
@@ -80,14 +85,32 @@ const ViewNotes = () => {
                     href={`/user/editNotes/${note.id}`}
                     className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 text-sm flex items-center gap-2 transition"
                   >
-                    <FaEdit /> Update
+                    <FaEdit /> 
                   </a>
                   <button
                     onClick={() => deleteNotes(note.id)}
                     className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 text-sm flex items-center gap-2 transition"
                   >
-                    <FaTrashAlt /> Delete
+                    <FaTrashAlt /> 
                   </button>
+                  {note.fileURL && (
+                    <>
+                      <a
+                        href={note.fileURL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 text-sm flex items-center gap-2 transition"
+                      >
+                        <FaEye /> 
+                      </a>
+                      <button
+                        onClick={() => handleDownload(note.fileURL, note.title)}
+                        className="px-4 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700 text-sm flex items-center gap-2 transition"
+                      >
+                        <FaDownload /> 
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
