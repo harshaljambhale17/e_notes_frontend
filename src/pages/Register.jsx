@@ -22,11 +22,14 @@ const Register = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
+        console.log("1")
 
         e.preventDefault();
-
+        console.log("2")
         try {
+            console.log("3")
             const response = await saveUser(formData);
+            console.log("6")
             navigate("/home")
             toast.success(response.message)
         } catch (error) {

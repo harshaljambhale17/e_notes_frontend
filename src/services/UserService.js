@@ -3,10 +3,10 @@ import { baseURL, httpClient } from "../config/AxiosHelper";
 
 
 export const saveUser = async (formData) => {
-    console.log("2")
+    console.log("4")
     consloe.log(baseURL)
     const response = await httpClient.post(`/api/saveUser`,formData);
-    console.log("6")
+    console.log("5")
     console.log(response.data)
     return response.data;
 }
