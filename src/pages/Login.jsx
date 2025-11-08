@@ -8,6 +8,7 @@ import { useUserContext } from '../context/UserContext';
 import { jwtDecode } from 'jwt-decode';
 import googleImage from '../assets/image/google.png';
 import githubImage from '../assets/image/github.png';
+import { baseURL } from '../config/AxiosHelper';
 
 
 const Login = () => {
@@ -53,7 +54,7 @@ const Login = () => {
     const handleLoginSuccess = async (credentialResponse) => {
         const token = credentialResponse.credential; // Google ID token
         try {
-            const res = await axios.post('http://localhost:8080/api/auth/google', { token });
+            const res = await axios.post(`${baseURL}/api/auth/google`, { token });
             localStorage.setItem('jwt', res.data.jwt);
             // Redirect or set auth state
         } catch (err) {
@@ -136,7 +137,7 @@ const Login = () => {
                     <div className="space-y-4">
                         {/* Google Login Button using @react-oauth/google */}
                         <button className="flex items-center justify-center w-full border border-gray-300 rounded px-3 py-2 bg-white hover:bg-blue-50"
-                        onClick={() => window.location.href = "http://localhost:8080/oauth2/authorization/google"}>
+                        onClick={() => window.location.href = `${baseURL}/oauth2/authorization/google`}>
                             <img
                                 src={googleImage}
                                 alt="Google"
@@ -146,7 +147,7 @@ const Login = () => {
                         </button>
                         {/* GitHub Styled Button */}
                         <button className="flex items-center justify-center w-full border border-gray-300 rounded px-3 py-2 bg-white hover:bg-blue-50"
-                        onClick={() => window.location.href = "http://localhost:8080/oauth2/authorization/github"}>
+                        onClick={() => window.location.href = `${baseURL}/oauth2/authorization/github`}>
                             <img
                                 src={githubImage}
                                 alt="GitHub"
