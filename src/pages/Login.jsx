@@ -72,7 +72,7 @@ const Login = () => {
         <>
             <section className="flex min-h-[70vh] flex-col mt-4 px-6 py-1 lg:px-4">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm text-center">
-                    <img className="mx-auto h-20 w-auto" src="../images/signin_logo.jpg" alt="Your Company" />
+                    <img className="mx-auto h-20 w-auto" src="/images/signin_logo.jpg" alt="Your Company" />
                     <h2 className="mt-5 text-2xl font-bold leading-9 tracking-tight text-gray-900">
                         Sign in to your account
                     </h2>
