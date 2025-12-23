@@ -20,7 +20,7 @@ const Profile = () => {
         localStorage.removeItem("token"); 
         localStorage.removeItem("userEmail"); 
         localStorage.removeItem("role"); 
-        navigate("/home");
+        navigate("/");
       } else {
         console.error("Logout failed:", response.statusText);
       }

@@ -21,7 +21,7 @@ const Navbar = () => {
           <span className="ml-3 text-5xl">ENotes</span>
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          <Link className="mr-5 hover:text-gray-900" to="/home">Home</Link>
+          <Link className="mr-5 hover:text-gray-900" to="/">Home</Link>
           <Link className="mr-5 hover:text-gray-900" to="/about">About</Link>
           <button
             className="mr-5 hover:text-gray-900"

@@ -23,7 +23,7 @@ export default function OAuth2RedirectHandler() {
         role: decoded.role,
       });
 
-      navigate("/home");
+      navigate("/");
     } else {
       navigate("/login");
     }

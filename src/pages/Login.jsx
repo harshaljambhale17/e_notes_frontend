@@ -40,7 +40,7 @@ const Login = () => {
                 fetchUserProfile(response.data.token);
 
                 toast.success("Login successful!");
-                navigate("/home"); // Redirect to home page
+                navigate("/"); // Redirect to home page
             } else {
                 setError("Invalid credentials.");
                 toast.error("Invalid credentials.");

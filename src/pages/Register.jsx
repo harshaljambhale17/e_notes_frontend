@@ -30,7 +30,7 @@ const Register = () => {
             console.log("3")
             const response = await saveUser(formData);
             console.log("6")
-            navigate("/home")
+            navigate("/")
             toast.success(response.message)
         } catch (error) {
             toast.error("User not created!")
